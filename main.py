@@ -6,9 +6,6 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.storage.jsonstore import JsonStore
 
-class CreateListItemForm(Widget):
-    pass
-
 class List(RecycleView):
     def __init__(self, **kwargs):
         super(List, self).__init__(**kwargs)
@@ -21,6 +18,9 @@ class List(RecycleView):
         for item in store:
             list_items.append({'text': item})
         self.data = list_items
+
+class Popup(Widget):
+    store = JsonStore('store.json')
 
 class Header(BoxLayout):
     pass
