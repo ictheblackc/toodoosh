@@ -25,6 +25,9 @@ class List(RecycleView):
 class Header(BoxLayout):
     pass
 
+class Footer(BoxLayout):
+    pass
+
 class HomeScreen(Screen):
     pass
 
@@ -36,7 +39,7 @@ class ScreenManager(ScreenManager):
 
 class TooDooshApp(App):
     def build(self):
-        pass
+        """"""
 
 if __name__ == '__main__':
     app = TooDooshApp()

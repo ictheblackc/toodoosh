@@ -1,13 +1,32 @@
+#:import Factory kivy.factory.Factory
+<Popup@Popup>:
+    auto_dismiss: False
+    Button:
+        size_hint_y: .1
+        text: 'Close me!'
+        on_release: root.dismiss()
+
 BoxLayout:
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 1
+        Rectangle:
+            # self here refers to the widget i.e FloatLayout
+            pos: self.pos
+            size: self.size
     orientation: 'vertical'
     Header:
         manager: screen_manager
         size_hint_y: .1
     ScreenManager:
         id: screen_manager
+    Footer:
+        manager: screen_manager
+        size_hint_y: .1
 
 <Header>:
     ActionBar:
+        size_hint_y: 1
         ActionView:
             ActionPrevious:
             ActionButton:
@@ -17,6 +36,15 @@ BoxLayout:
             ActionButton:
                 text: 'Settings'
                 on_press: root.manager.current = 'settings_screen'
+
+<Footer>:
+    Button:
+        text: '+'
+        on_press: Factory.Popup().open()
+
+<Popup>:
+    auto_dismiss: False
+    title: 'popoppop'
 
 <List>:
     viewclass: 'Label'
