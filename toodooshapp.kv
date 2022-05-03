@@ -1,0 +1,42 @@
+BoxLayout:
+    orientation: 'vertical'
+    Header:
+        manager: screen_manager
+        size_hint_y: .1
+    ScreenManager:
+        id: screen_manager
+
+<Header>:
+    ActionBar:
+        ActionView:
+            ActionPrevious:
+            ActionButton:
+                text: 'Home'
+                on_press: root.manager.current = 'home_screen'
+            ActionSeparator:
+            ActionButton:
+                text: 'Settings'
+                on_press: root.manager.current = 'settings_screen'
+
+<List>:
+    viewclass: 'Label'
+    RecycleBoxLayout:
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        List:
+
+<ScreenManager>:
+    id: screen_manager
+    HomeScreen:
+        name: 'home_screen'
+        manager: 'screen_manager'
+    SettingsScreen:
+        name: 'settings_screen'
+        manager: 'screen_manager'
