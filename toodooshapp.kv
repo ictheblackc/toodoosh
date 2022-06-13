@@ -1,17 +1,20 @@
 #:import Factory kivy.factory.Factory
-<Popup>:
+<AddTaskPopup@Popup>:
     auto_dismiss: True
+    id: id_popup
     title: ''
     size_hint: None, None
     size: 400, 200
     BoxLayout:
         orientation: 'vertical'
         TextInput:
+            id: text_input_add_task
             multiline: False
         Button:
             size_hint_y: .5
             text: 'Add Task'
-            on_release: root.dismiss()
+            on_release: root.add_task()
+
 
 BoxLayout:
     canvas.before:
@@ -42,15 +45,25 @@ BoxLayout:
             ActionButton:
                 text: 'Settings'
                 on_press: root.manager.current = 'settings_screen'
+            ActionSeparator:
+            ActionButton:
+                text: 'New Screen'
+                on_press: root.manager.current = 'new_screen'
 
 <Footer>:
     Button:
         text: '+'
         size: 100, 50
         size_hint_y: None
-        on_press: Factory.Popup().open()
+        on_press: Factory.AddTaskPopup().open()
+    Button:
+        text: 'load'
+        size: 100, 50
+        size_hint_y: None
+        on_press: app.list.load_data()
 
 <List>:
+    id: list_id
     viewclass: 'Label'
     RecycleBoxLayout:
         default_size: None, dp(56)
@@ -64,6 +77,14 @@ BoxLayout:
         orientation: 'vertical'
         List:
 
+<NewScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'мурмур'
+
+
+
 <ScreenManager>:
     id: screen_manager
     HomeScreen:
@@ -72,3 +93,9 @@ BoxLayout:
     SettingsScreen:
         name: 'settings_screen'
         manager: 'screen_manager'
+        Label:
+            text: "123"
+    NewScreen:
+        name: 'new_screen'
+        manager: 'screen_manager'
+
